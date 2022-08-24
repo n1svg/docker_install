@@ -1,0 +1,35 @@
+---
+- name: Add signing key
+  ansible.builtin.rpm_key:
+    key: "{{ docker_repo }}{{ ansible_distribution | lower | replace('almalinux', 'centos') }}/gpg"
+    state: present
+
+# On a writing moment ansible.builtin.yum_repository module unable to proprly add list of repository 
+# from https://download.docker.com/linux/centos/docker-ce.repo it add only URL string 
+# to /etc/yum.repos.d/docker-ce.repo and I used dirty bashsible
+#
+#- name: Add yum repository
+#  ansible.builtin.yum_repository:
+#    name: docker-ce
+#    description: Docker-ce official repository
+#    baseurl: "{{ docker_repo }}{{ ansible_distribution | lower | replace('almalinux', 'centos') }}/docker-ce.repo"
+#    gpgkey: "{{ docker_repo }}{{ ansible_distribution | lower | replace('almalinux', 'centos') }}/gpg"
+#    enabled: yes
+#    gpgcheck: yes
+
+- name: Adding repo with ! yum-config-manager !
+  ansible.builtin.command: yum-config-manager --add-repo "{{ docker_repo }}{{ ansible_distribution | lower | replace('almalinux', 'centos') }}/docker-ce.repo"
+
+- name: Install Docker-ce
+  package:
+    name: "{{ docker_packages }}"
+    state: present
+
+- name: Enable and start service docker
+  ansible.builtin.service:
+    name: docker
+    enabled: yes
+    state: started
+  
+...
+

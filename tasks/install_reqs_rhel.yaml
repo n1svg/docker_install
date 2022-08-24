@@ -1,0 +1,7 @@
+---
+
+- name: Install required sysytem packages
+  ansible.builtin.yum:
+    name: "{{ yum_package_name }}"
+    state: latest
+...

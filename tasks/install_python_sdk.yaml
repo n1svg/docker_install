@@ -1,0 +1,10 @@
+---
+
+- name: install Docker-SDK for Python package
+  pip: 
+    name: docker
+    state: present
+  tags:
+    - install_docker_sdk
+ 
+...

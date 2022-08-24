@@ -1,0 +1,21 @@
+---
+- name: Do non allow root access by password
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#PermitRootLogin'
+    line: PermitRootLogin prohibit-password
+
+- name: Do non allow ssh access by password
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#PasswordAuthentication'
+    line: PasswordAuthentication no
+
+- name: Enable ssh access by public key
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#PubkeyAuthentication'
+    line: PubkeyAuthentication yes
+  notify: 
+  - Restart sshd service
+...

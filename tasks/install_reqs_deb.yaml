@@ -1,0 +1,9 @@
+---
+- name: Update apt cache
+  apt: update_cache=yes
+
+- name: Install required sysytem packages
+  apt:
+    name: "{{ apt_package_name }}"
+    state: latest
+...

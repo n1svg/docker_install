@@ -1,0 +1,22 @@
+---
+# tasks file for docker-install
+
+- include_tasks: install_reqs_rhel.yaml
+  when: ansible_os_family == 'RedHat'
+
+- include_tasks: install_reqs_deb.yaml
+  when: ansible_os_family == 'Debian'
+
+- include_tasks: docker_install_rhel.yaml
+  when: ansible_os_family == 'RedHat'
+
+- include_tasks: docker_install_deb.yaml
+  when: ansible_os_family == 'Debian'
+
+- include_tasks: add_user.yaml
+
+- include_tasks: install_python_sdk.yaml
+
+- include_tasks: first_ssh_config.yaml
+
+...

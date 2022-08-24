@@ -1,0 +1,24 @@
+---
+# vars file for docker-install
+docker_release_br: stable
+docker_repo: https://download.docker.com/linux/
+docker_packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+docker_restart_handler_state: restarted
+docker_service_state: started
+docker_service_enabled: true
+yum_package_name:
+  - python3-wheel
+  - python3-setuptools
+  - python3-pip
+  - ca-certificates 
+  - yum-utils
+apt_package_name:
+  - python3-wheel
+  - python3-setuptools
+  - python3-pip
+  - apt-transport-https
+  - ca-certificates   
+...

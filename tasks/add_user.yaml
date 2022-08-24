@@ -1,0 +1,32 @@
+---
+- name: Add user {{ username }} to Debian
+  ansible.builtin.user:
+    name: "{{ username }}"
+    password: "{{ username_pass | password_hash('sha256') }}"
+    shell: /bin/bash
+    groups: sudo
+    append: yes
+  when: ansible_os_family == 'Debian'
+
+- name: Add user {{ username }} to RedHat
+  ansible.builtin.user:
+    name: "{{ username }}"
+    password: "{{ username_pass | password_hash('sha256') }}"
+    shell: /bin/bash
+    groups: wheel
+    append: yes
+  when: ansible_os_family == 'RedHat'
+
+- name: Set autorized key for user "{{ username }}"
+  authorized_key:
+    user: "{{ username }}"
+    state: present
+    key: "{{ dev_ssh_pubkey }}"
+
+- name: Add user in docker group
+  user:
+    name: "{{ username }}"
+    groups: docker
+    append: yes
+
+...
