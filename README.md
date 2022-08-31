@@ -1,6 +1,7 @@
 Role Name : docker-install
 =========
 This role install docker-ce, docker-ce-cli and python3 dependencies for control docker with python.
+```
 @all:
   |--@dev:
   |  |--192.168.56.3
@@ -15,6 +16,7 @@ This role install docker-ce, docker-ce-cli and python3 dependencies for control 
   |  |--192.168.56.6
   |--@ungrouped:
 
+```
 Requirements
 ------------
 
@@ -37,6 +39,7 @@ Global variables specific to different development environments are stored in in
       └── stage
           └── hosts.yaml
 
+```
 Variables for current role stored in ./vars/ and ./defaults/
 
 Dependencies
@@ -48,13 +51,13 @@ Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
+```
     - hosts: dev
       roles:
         - docker-install
         #- { role: username.rolename, x: 42 }
 
-
+```
 $ ansible-playbook --vault-password-file .vault-pass.dev docker_install.yaml
 
 License
