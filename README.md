@@ -1,6 +1,7 @@
 Role Name : docker-install
 =========
 This role install docker-ce, docker-ce-cli and python3 dependencies for control docker with python.
+```
 @all:
   |--@dev:
   |  |--192.168.56.3
@@ -14,14 +15,14 @@ This role install docker-ce, docker-ce-cli and python3 dependencies for control 
   |  |--192.168.56.24
   |  |--192.168.56.6
   |--@ungrouped:
-
+```
 Requirements
 ------------
 
 
 Role Variables
 --------------
-
+```
 Global variables specific to different development environments are stored in inventory directory ~/.ansible/inventory/.
       inventory/
       ├── dev
@@ -36,7 +37,7 @@ Global variables specific to different development environments are stored in in
       │   └── hosts.yaml
       └── stage
           └── hosts.yaml
-
+```
 Variables for current role stored in ./vars/ and ./defaults/
 
 Dependencies
